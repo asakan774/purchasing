@@ -6,7 +6,7 @@ import { ImportType } from "./types";
 export async function previewImport(file: File, importType: ImportType) {
   const buffer = await file.arrayBuffer();
   const parsed = await parseMangoWorkbook(buffer, importType);
-  const fileHash = sha256Buffer(buffer);
+  const fileHash = await sha256Buffer(buffer);
   const supabase = createServiceClient();
 
   const keys = parsed.rows.map((row) => row.sourceKey);

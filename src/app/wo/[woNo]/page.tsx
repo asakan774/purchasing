@@ -4,6 +4,8 @@ import { ArrowLeft } from "lucide-react";
 import { money } from "@/lib/format";
 import { canConnectSupabase, getWoDetail } from "@/lib/search/queries";
 
+export const runtime = "edge";
+
 export default async function WoDetailPage({ params }: { params: Promise<{ woNo: string }> }) {
   const { woNo } = await params;
   if (!canConnectSupabase()) notFound();

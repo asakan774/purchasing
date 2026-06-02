@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { previewImport } from "@/lib/importers/preview";
 import { ImportType } from "@/lib/importers/types";
 
-export const runtime = "nodejs";
+export const runtime = "edge";
 export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {

@@ -2,6 +2,7 @@ import { SupplierSearchClient } from "@/components/SupplierSearchClient";
 import { canConnectSupabase, searchSuppliers } from "@/lib/search/queries";
 
 export const dynamic = "force-dynamic";
+export const runtime = "edge";
 
 export default async function SuppliersPage() {
   const rows = canConnectSupabase() ? await searchSuppliers({}) : [];

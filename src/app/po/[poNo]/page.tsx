@@ -4,6 +4,8 @@ import { ArrowLeft } from "lucide-react";
 import { money, qty } from "@/lib/format";
 import { canConnectSupabase, getPoDetail } from "@/lib/search/queries";
 
+export const runtime = "edge";
+
 export default async function PoDetailPage({ params }: { params: Promise<{ poNo: string }> }) {
   const { poNo } = await params;
   if (!canConnectSupabase()) notFound();

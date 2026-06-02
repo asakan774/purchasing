@@ -1,5 +1,4 @@
-import { createHash } from "node:crypto";
-
-export function sha256Buffer(buffer: ArrayBuffer): string {
-  return createHash("sha256").update(Buffer.from(buffer)).digest("hex");
+export async function sha256Buffer(buffer: ArrayBuffer): Promise<string> {
+  const digest = await crypto.subtle.digest("SHA-256", buffer);
+  return [...new Uint8Array(digest)].map((byte) => byte.toString(16).padStart(2, "0")).join("");
 }
