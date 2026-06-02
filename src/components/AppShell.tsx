@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
-import { Database, FileSpreadsheet, Handshake, PackageSearch, ReceiptText, Wrench } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { Database, FileSpreadsheet, Handshake, LogOut, PackageSearch, ReceiptText, Wrench } from "lucide-react";
 
 const nav = [
   { href: "/", label: "Import", icon: FileSpreadsheet },
@@ -10,6 +13,9 @@ const nav = [
 ];
 
 export function AppShell({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  if (pathname === "/login") return <main className="main login-main">{children}</main>;
+
   return (
     <div className="app-shell">
       <aside className="sidebar">
@@ -28,6 +34,12 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             </Link>
           ))}
         </nav>
+        <form className="logout-form" action="/api/auth/logout" method="post">
+          <button type="submit">
+            <LogOut size={18} />
+            <span>Logout</span>
+          </button>
+        </form>
       </aside>
       <main className="main">{children}</main>
     </div>

@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
+    "create-user": "node scripts/create-user.mjs",
     "test": "vitest run"
   },
   "dependencies": {

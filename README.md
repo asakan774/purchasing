@@ -18,7 +18,15 @@ Production-grade starting point for importing Mango ERP PO, WO, and vendor Excel
 1. Create a Supabase project.
 2. Run `supabase/migrations/001_initial_procurement.sql`.
 3. Copy `.env.example` to `.env.local` and fill in Supabase values.
-4. Run:
+4. Run `supabase/migrations/004_app_users.sql`.
+5. Set `AUTH_SECRET` for signed login sessions.
+6. Create an app user:
+
+```bash
+npm run create-user -- admin your-password "Administrator"
+```
+
+7. Run:
 
 ```bash
 npm install

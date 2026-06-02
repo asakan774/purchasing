@@ -58,7 +58,8 @@ select {
   gap: 4px;
 }
 
-.sidebar a {
+.sidebar a,
+.logout-form button {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -68,9 +69,23 @@ select {
   border-radius: 6px;
 }
 
-.sidebar a:hover {
+.sidebar a:hover,
+.logout-form button:hover {
   background: #1e293b;
   color: #fff;
+}
+
+.logout-form {
+  margin-top: 18px;
+}
+
+.logout-form button {
+  width: 100%;
+  min-height: auto;
+  border: 0;
+  background: transparent;
+  justify-content: flex-start;
+  font-weight: 400;
 }
 
 .main {
@@ -452,6 +467,56 @@ th {
 .notice {
   border-top: 1px solid var(--line);
   padding-top: 12px;
+}
+
+.login-page {
+  min-height: calc(100vh - 48px);
+  display: grid;
+  place-items: center;
+}
+
+.login-panel {
+  width: min(420px, 100%);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 28px;
+  box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+}
+
+.login-mark {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: #e7eef6;
+  color: var(--accent-strong);
+  margin-bottom: 16px;
+}
+
+.login-panel h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.login-panel p {
+  margin: 6px 0 20px;
+  color: var(--muted);
+}
+
+.login-form {
+  display: grid;
+  gap: 14px;
+}
+
+.login-error {
+  margin-bottom: 14px;
+  border: 1px solid #f1b7b7;
+  background: #fff1f1;
+  color: #9f1d1d;
+  border-radius: 6px;
+  padding: 10px 12px;
 }
 
 .spin {
