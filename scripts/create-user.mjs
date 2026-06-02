@@ -19,7 +19,7 @@ if (!url || !serviceRoleKey) {
   process.exit(1);
 }
 
-const iterations = 210_000;
+const iterations = 60_000;
 const salt = encodeBase64Url(randomBytes(16));
 const passwordHash = await hashPassword(password, salt, iterations);
 const supabase = createClient(url, serviceRoleKey, {

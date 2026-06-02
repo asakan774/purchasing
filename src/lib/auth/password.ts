@@ -1,4 +1,4 @@
-const DEFAULT_ITERATIONS = 210_000;
+const DEFAULT_ITERATIONS = 60_000;
 
 export async function verifyPassword({
   password,

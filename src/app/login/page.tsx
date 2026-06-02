@@ -38,6 +38,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
 }
 
 function errorMessage(error: string) {
-  if (error === "config") return "Login is not configured. Set APP_PASSWORD first.";
+  if (error === "config") return "Login is not configured. Set Supabase env and AUTH_SECRET first.";
+  if (error === "server") return "Login service failed. Check environment variables and app_users migration.";
   return "Password is incorrect.";
 }

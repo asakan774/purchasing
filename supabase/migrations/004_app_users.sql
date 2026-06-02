@@ -4,7 +4,7 @@ create table if not exists app_users (
   full_name text,
   password_hash text not null,
   password_salt text not null,
-  password_iterations int not null default 210000,
+  password_iterations int not null default 60000,
   is_active boolean not null default true,
   last_login_at timestamptz,
   created_at timestamptz not null default now(),
@@ -13,3 +13,6 @@ create table if not exists app_users (
 
 create index if not exists app_users_active_idx
   on app_users (is_active, username);
+
+alter table app_users
+  alter column password_iterations set default 60000;
