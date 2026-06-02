@@ -48,7 +48,7 @@ export async function POST(request: Request) {
 
     await supabase.from("app_users").update({ last_login_at: new Date().toISOString() }).eq("id", user.id);
 
-    const response = NextResponse.redirect(new URL(nextPath, request.url));
+    const response = NextResponse.redirect(new URL(nextPath, request.url), 303);
     response.cookies.set(AUTH_COOKIE_NAME, await createSessionCookieValue(user.id), getAuthCookieOptions());
     return response;
   } catch {
@@ -60,7 +60,7 @@ function redirectToLogin(request: Request, error: string, nextPath: string) {
   const url = new URL("/login", request.url);
   url.searchParams.set("error", error);
   url.searchParams.set("next", nextPath);
-  return NextResponse.redirect(url);
+  return NextResponse.redirect(url, 303);
 }
 
 function sanitizeNextPath(value: string) {
