@@ -431,6 +431,47 @@ td a:hover {
   overflow: auto;
 }
 
+.attachments-panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px 18px;
+}
+
+.attachments-heading {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+  margin: 0 0 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.attachments-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.attachment-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 12px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--accent);
+  font-size: 13px;
+  text-decoration: none;
+  transition: border-color 120ms, background 120ms;
+}
+
+.attachment-item:hover {
+  border-color: var(--accent);
+  background: #f0f9f7;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;

@@ -221,6 +221,24 @@ export async function searchPriceReference(params: SearchParams) {
   return data ?? [];
 }
 
+export async function getPoAttachments(poNo: string) {
+  const supabase = createServiceClient();
+  const { data, error } = await supabase
+    .from("po_attachments")
+    .select("id,po_no,storage_path,original_filename,mime_type,file_index")
+    .eq("po_no", poNo)
+    .order("file_index", { ascending: true });
+
+  if (error) throw error;
+
+  return (data ?? []).map((a) => {
+    const { data: urlData } = supabase.storage
+      .from("po-attachments")
+      .getPublicUrl(a.storage_path);
+    return { ...a, publicUrl: urlData.publicUrl };
+  });
+}
+
 export function canConnectSupabase() {
   return Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY);
 }

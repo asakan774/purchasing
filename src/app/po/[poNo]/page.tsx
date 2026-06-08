@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, FileText, Image } from "lucide-react";
 import { money, qty } from "@/lib/format";
-import { canConnectSupabase, getPoDetail } from "@/lib/search/queries";
+import { canConnectSupabase, getPoDetail, getPoAttachments } from "@/lib/search/queries";
 
 export const runtime = "edge";
 
@@ -11,7 +11,10 @@ export default async function PoDetailPage({ params }: { params: Promise<{ poNo:
   if (!canConnectSupabase()) notFound();
 
   const decodedPoNo = decodeURIComponent(poNo);
-  const detail = await getPoDetail(decodedPoNo);
+  const [detail, attachments] = await Promise.all([
+    getPoDetail(decodedPoNo),
+    getPoAttachments(decodedPoNo).catch(() => [])
+  ]);
   const document = detail.document;
   const items = detail.items;
 
@@ -98,6 +101,29 @@ export default async function PoDetailPage({ params }: { params: Promise<{ poNo:
           </tbody>
         </table>
       </div>
+
+      {attachments.length > 0 && (
+        <section className="attachments-panel">
+          <h2 className="attachments-heading">เอกสารแนบ ({attachments.length})</h2>
+          <div className="attachments-list">
+            {attachments.map((a) => {
+              const isImage = a.mime_type.startsWith("image/");
+              return (
+                <a
+                  key={a.id}
+                  href={a.publicUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="attachment-item"
+                >
+                  {isImage ? <Image size={20} /> : <FileText size={20} />}
+                  <span>{a.original_filename}</span>
+                </a>
+              );
+            })}
+          </div>
+        </section>
+      )}
     </div>
   );
 }
